@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/aedab74c-c27e-4843-aef3-44cfdfb6a15d/AppServices/subscriptions/aedab74c-c27e-4843-aef3-44cfdfb6a15d/resourceGroups/GET-Assessment/providers/Microsoft.Web/sites/InventoryManagementArya",
+  "appService.deploySubpath": "."
+}

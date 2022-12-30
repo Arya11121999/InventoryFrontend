@@ -1,0 +1,126 @@
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <h1 style="color: aliceblue">Factory Dashboard</h1>
+    <div class="d-flex">
+      <button
+        type="button"
+        (click)="clickAddEmployee()"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-success"
+      >
+        Add Factory
+      </button>
+    </div>
+  </div>
+</nav>
+<table class="table table-striped-columns mt-3">
+  <thead>
+    <tr>
+      <th scope="col">Factory ID</th>
+      <th scope="col">Factory Name</th>
+      <th scope="col">Factory Location</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of factorydata">
+      <td (click)="Click(row.factoryId)">{{ row.factoryId }}</td>
+      <td>{{ row.factoryName }}</td>
+      <td>{{ row.factoryLocation }}</td>
+      <button
+        (click)="updateFactory(row)"
+        class="btn btn-info"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-success"
+      >
+        Edit
+      </button>
+      <button
+        value="Delete"
+        (click)="deleteFactory(row.factoryId)"
+        class="btn btn-danger mx-3"
+      >
+        Delete
+      </button>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Factory Details</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"
+              >factory Name</label
+            >
+            <input
+              formControlName="factoryName"
+              type="text"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailHelp" class="form-text"></div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Factory Location</label
+            >
+            <input
+              formControlName="factoryLocation"
+              type="text"
+              class="form-control"
+              id="exampleInputPassword1"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="cancel"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          *ngIf="showAdd"
+          (click)="postFactoryDetails()"
+          class="btn btn-primary"
+        >
+          Add Factory
+        </button>
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          (click)="UpdateFactoryDetails()"
+          class="btn btn-primary"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
