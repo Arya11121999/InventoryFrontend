@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light bg-primary">
+<!-- <nav class="navbar navbar-light bg-primary">
   <div class="container-fluid">
     <h1 style="color: aliceblue">factory Name:</h1>
     <div class="d-flex">
@@ -14,7 +14,7 @@
     </div>
   </div>
 </nav>
-<table class="table table-striped-columns mt-3">
+<table class="table table-hover mt-3">
   <thead>
     <tr>
       <th scope="col">Product ID</th>
@@ -30,8 +30,8 @@
       <td>{{ row.quantity }}</td>
       <td>{{ row.description }}</td>
       <button
-        (click)="onEdit()"
-        class="btn btn-info"
+        (click)="updateProduct(row)"
+        class="btn"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
@@ -42,7 +42,7 @@
       <button
         type="button"
         value="Delete"
-        (click)="deleteProduct()"
+        (click)="deleteProduct(row)"
         class="btn btn-danger mx-3"
       >
         Delete
@@ -108,15 +108,6 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          id="cancel"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
-          Close
-        </button>
-
         <div class="mb-3 style">
           <label for="ProductImage" class="form-label">Product Image</label>
           <form action="/action_page.php">
@@ -141,4 +132,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

@@ -25,7 +25,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of factorydata">
-      <td (click)="Click(row.factoryId)">{{ row.factoryId }}</td>
+      <td (click)="Click(row.factoryId)">
+        {{ row.factoryId }}
+      </td>
       <td>{{ row.factoryName }}</td>
       <td>{{ row.factoryLocation }}</td>
       <button

@@ -17,6 +17,7 @@ export class FactoryPageComponent implements OnInit {
   factorydata!: any;
   deletefactory = false;
   factoryId!: number;
+  showHover!: boolean;
   constructor(
     private router: Router,
     private factoryService: FactoryService,
@@ -81,7 +82,9 @@ export class FactoryPageComponent implements OnInit {
   }
 
   Click(factoryId: number) {
-    //  this.router.navigate(['/product']);
     this.router.navigate(['/factory', factoryId]);
+  }
+  hover() {
+    this.showHover = true;
   }
 }

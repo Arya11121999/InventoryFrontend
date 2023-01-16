@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ProductModel } from 'src/app/models/product-model';
 import { FactoryService } from 'src/app/factory.service';
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -44,13 +45,7 @@ export class ProductListComponent implements OnInit {
     this.showAdd = true;
     this.showUpdate = false;
   }
-  deleteProduct() {
-    this.ProductService.deleteProduct(this.factoryId).subscribe((res) => {
-      alert('delete factory');
-      this.deleteproduct = true;
-      this.getProduct(this.factoryId);
-    });
-  }
+
   postDetails() {
     this.ProductModelObj.factoryId = this.factoryId;
     this.ProductModelObj.productName = this.formValue.value.productName;
@@ -70,10 +65,25 @@ export class ProductListComponent implements OnInit {
       this.Productdata = res;
     });
   }
+  deleteProduct(row: any) {
+    this.ProductService.deleteProduct(this.factoryId).subscribe((res) => {
+      alert('delete factory');
+      this.deleteproduct = true;
+      this.getProduct(this.factoryId);
+    });
+  }
+  updateProduct(row: any) {
+    this.showAdd = false;
+    this.showUpdate = true;
+    this.ProductModelObj.factoryId = row.factoryId;
+    this.formValue.controls['productName'].setValue(row.productName);
+    this.formValue.controls['quantity'].setValue(row.quantity);
+    this.formValue.controls['description'].setValue(row.description);
+  }
   UpdateProductDetails() {
     this.ProductModelObj.productName = this.formValue.value.productName;
     this.ProductModelObj.quantity = this.formValue.value.quantity;
-    this.ProductModelObj.description = this.formValue.value.fdescription;
+    this.ProductModelObj.description = this.formValue.value.description;
 
     this.ProductService.updateProduct(this.ProductModelObj).subscribe((res) => {
       alert('updated');
@@ -83,5 +93,4 @@ export class ProductListComponent implements OnInit {
       this.getProduct(this.factoryId);
     });
   }
-  onEdit() {}
 }
