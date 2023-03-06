@@ -5,7 +5,9 @@ import { ProductDTO } from 'src/app/interfaces/product-dto';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { ProductModel } from 'src/app/models/product-model';
 import { FactoryService } from 'src/app/factory.service';
-
+import { FactoryModel } from 'src/app/models/factory-model';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -21,11 +23,18 @@ export class ProductListComponent implements OnInit {
   delete = false;
   factoryId!: number;
   deleteproduct = false;
+  factory!: FactoryModel;
+
+  http: any;
+  factoryName!: string;
+  selectedFactoryId!: number;
+  router: any;
 
   constructor(
     private route: ActivatedRoute,
     private ProductService: ProductService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private sanitizer: DomSanitizer
   ) {
     this.factoryId = this.route.snapshot.params['id'];
   }
@@ -39,6 +48,11 @@ export class ProductListComponent implements OnInit {
       description: [''],
     });
     this.getProduct(this.factoryId);
+    this.route.queryParams.subscribe((params) => {
+      this.factoryId = params['factoryId'];
+      this.factoryName = params['factoryName'];
+      console.log();
+    });
   }
   clickAddProduct() {
     this.formValue.reset();
@@ -60,10 +74,27 @@ export class ProductListComponent implements OnInit {
       this.formValue.reset();
     });
   }
+
+  // prepareFormData(product: ProductModel): FormData {
+  //   const formData = new FormData();
+  //   formData.append(
+  //     'product',
+  //     new Blob([JSON.stringify(product)], { type: 'application/json' })
+  //   );
+
+  //   for (var i = 0; i < product.productImages.length; i++) {
+  //     formData.append(
+  //       'imageFile',
+  //       product.productImages[i].file,
+  //       product.productImages[i].file.name
+  //     );
+  //   }
+  //   return formData;
+  // }
   getProduct(factoryId: number) {
-    this.ProductService.getAllProducts(factoryId).subscribe((res) => {
-      this.Productdata = res;
-    });
+    // this.ProductService.getAllProducts(factoryId).subscribe((res) => {
+    //   this.Productdata = res;
+    // });
   }
   deleteProduct(row: any) {
     this.ProductService.deleteProduct(this.factoryId).subscribe((res) => {

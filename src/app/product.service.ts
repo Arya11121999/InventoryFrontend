@@ -8,9 +8,12 @@ import { ProductModel } from './models/product-model';
   providedIn: 'root',
 })
 export class ProductService {
+  get(factoryId: number) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
-  private baseUrl = 'http://localhost:8180/manage/';
+  private baseUrl = 'https://inventoryarya.azurewebsites.net/manage';
 
   getAllProducts(factoryId: number): Observable<ProductDTO[]> {
     return this.http.get<ProductDTO[]>(
@@ -19,7 +22,7 @@ export class ProductService {
   }
 
   addProduct(product: ProductModel) {
-    return this.http.post(this.baseUrl + 'add/product', product);
+    return this.http.post<ProductModel>(this.baseUrl + 'add/product', product);
   }
 
   deleteProduct(productId: number) {

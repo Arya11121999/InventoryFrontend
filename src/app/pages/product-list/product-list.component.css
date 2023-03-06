@@ -11,3 +11,6 @@
 .style {
   margin-right: 175px;
 }
+.table > :not(caption) > * > * {
+  background-color: default;
+}

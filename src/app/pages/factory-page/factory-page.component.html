@@ -4,7 +4,7 @@
     <div class="d-flex">
       <button
         type="button"
-        (click)="clickAddEmployee()"
+        (click)="clickAddFactory()"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         class="btn btn-success"
@@ -14,7 +14,7 @@
     </div>
   </div>
 </nav>
-<table class="table table-striped-columns mt-3">
+<table class="table table-hover mt-3">
   <thead>
     <tr>
       <th scope="col">Factory ID</th>
@@ -25,28 +25,30 @@
   </thead>
   <tbody>
     <tr *ngFor="let row of factorydata">
-      <td (click)="Click(row.factoryId)">
+      <td class="hover-underline-animation" (click)="Click(row.factoryId , row.factoryName)">
         {{ row.factoryId }}
       </td>
       <td>{{ row.factoryName }}</td>
       <td>{{ row.factoryLocation }}</td>
-      <button
-        (click)="updateFactory(row)"
-        class="btn btn-info"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        class="btn btn-success"
-      >
-        Edit
-      </button>
-      <button
-        value="Delete"
-        (click)="deleteFactory(row.factoryId)"
-        class="btn btn-danger mx-3"
-      >
-        Delete
-      </button>
+      <td>
+        <button
+          (click)="updateFactory(row)"
+          class="btn"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          class="btn btn-success"
+        >
+          Edit
+        </button>
+        <button
+          value="Delete"
+          (click)="deleteFactory(row.factoryId)"
+          class="btn btn-danger mx-3"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

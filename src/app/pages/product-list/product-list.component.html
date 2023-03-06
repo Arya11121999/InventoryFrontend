@@ -1,6 +1,13 @@
-<!-- <nav class="navbar navbar-light bg-primary">
+<nav class="navbar navbar-light bg-primary">
   <div class="container-fluid">
-    <h1 style="color: aliceblue">factory Name:</h1>
+    <h1 style="color: aliceblue">
+      <div *ngFor="let factory; factory">
+        {{ factory.factoryName }}
+      </div>
+
+      <p>Factory Name: {{ factoryName }}</p>
+    </h1>
+
     <div class="d-flex">
       <button
         (click)="clickAddProduct()"
@@ -20,6 +27,7 @@
       <th scope="col">Product ID</th>
       <th scope="col">Product Name</th>
       <th scope="col">Quantity</th>
+      <th scope="col">Description</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -29,24 +37,28 @@
       <td>{{ row.productName }}</td>
       <td>{{ row.quantity }}</td>
       <td>{{ row.description }}</td>
-      <button
-        (click)="updateProduct(row)"
-        class="btn"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        class="btn btn-success"
-      >
-        Edit
-      </button>
-      <button
-        type="button"
-        value="Delete"
-        (click)="deleteProduct(row)"
-        class="btn btn-danger mx-3"
-      >
-        Delete
-      </button>
+      <td>
+        <button
+          (click)="updateProduct(row)"
+          class="btn"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          class="btn btn-success"
+        >
+          Edit
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          value="Delete"
+          (click)="deleteProduct(row)"
+          class="btn btn-danger mx-3"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -110,9 +122,25 @@
       <div class="modal-footer">
         <div class="mb-3 style">
           <label for="ProductImage" class="form-label">Product Image</label>
-          <form action="/action_page.php">
+          <!-- <form action="/action_page.php">
             <input class="mb-4" type="file" id="myFile" name="filename" />
-          </form>
+          </form> -->
+          <!-- <form (ngSubmit)="uploadImage()">
+            <input type="file" (change)="onFileSelected($event)" /><button
+              type="submit"
+            >
+              Upload
+            </button>
+          </form> -->
+          <label class="btn btn-default p-0">
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              value="select"
+              #selectFile
+            />
+          </label>
           <button
             type="button"
             *ngIf="showAdd"
@@ -123,6 +151,7 @@
           </button>
           <button
             type="button"
+            *ngIf="showUpdate"
             (click)="UpdateProductDetails()"
             class="btn btn-primary update"
           >
@@ -132,4 +161,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>

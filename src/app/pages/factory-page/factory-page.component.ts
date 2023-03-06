@@ -18,6 +18,7 @@ export class FactoryPageComponent implements OnInit {
   deletefactory = false;
   factoryId!: number;
   showHover!: boolean;
+  localStorage: any;
   constructor(
     private router: Router,
     private factoryService: FactoryService,
@@ -31,7 +32,7 @@ export class FactoryPageComponent implements OnInit {
     });
     this.getAllFactory();
   }
-  clickAddEmployee() {
+  clickAddFactory() {
     this.formValue.reset();
     this.showAdd = true;
     this.showUpdate = false;
@@ -81,10 +82,18 @@ export class FactoryPageComponent implements OnInit {
     });
   }
 
-  Click(factoryId: number) {
-    this.router.navigate(['/factory', factoryId]);
+  Click(factoryId: number, factoryName: string) {
+    this.router.navigate(['/factory', factoryId], {
+      queryParams: { factoryId: factoryId, factoryName: factoryName },
+    });
   }
   hover() {
     this.showHover = true;
   }
+  setLanguage(language: string) {
+    this.localStorage.setItem('language', language).subscribe(() => {
+      console.log('Language has been set to ' + language);
+    });
+  }
 }
+console.log('hi');
