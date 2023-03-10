@@ -90,10 +90,4 @@ export class FactoryPageComponent implements OnInit {
   hover() {
     this.showHover = true;
   }
-  setLanguage(language: string) {
-    this.localStorage.setItem('language', language).subscribe(() => {
-      console.log('Language has been set to ' + language);
-    });
-  }
 }
-console.log('hi');
