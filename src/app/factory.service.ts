@@ -13,13 +13,13 @@ export class FactoryService {
   constructor(private http: HttpClient) {}
 
   private getFactoriesUrl =
-    'https://inventoryarya.azurewebsites.net/manage/viewAll/factory';
+    'https://apim-get-assessment.azure-api.net/Apis/manage/viewAll/factory?subscription-key=617113e6a6f94201a414d22547d1ffe8';
   private addFactoryUrl =
-    'https://inventoryarya.azurewebsites.net/manage/add/factory';
+    'https://apim-get-assessment.azure-api.net/Apis/manage/add/factory?subscription-key=617113e6a6f94201a414d22547d1ffe8';
   private deleteUrl =
-    'https://inventoryarya.azurewebsites.net/manage/delete/factory/';
+    'https://apim-get-assessment.azure-api.net/Apis/manage/delete/factory?subscription-key=617113e6a6f94201a414d22547d1ffe8';
   private updateUrl =
-    'https://inventoryarya.azurewebsites.net/manage/update/factory';
+    'https://apim-get-assessment.azure-api.net/Apis/manage/update/factory?subscription-key=617113e6a6f94201a414d22547d1ffe8';
 
   getAllFactories(): Observable<FactoryDTO[]> {
     return this.http.get<FactoryDTO[]>(this.getFactoriesUrl);

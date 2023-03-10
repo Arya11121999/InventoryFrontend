@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://inventoryarya.azurewebsites.net/',
+  baseUrl: 'https://apim-get-assessment.azure-api.net/Apis',
 };

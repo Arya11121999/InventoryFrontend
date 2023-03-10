@@ -4,4 +4,6 @@ export class ProductModel {
   quantity!: number;
   factoryId!: number;
   description!: string;
+  imageName!: string;
+  imageURL!: string;
 }
